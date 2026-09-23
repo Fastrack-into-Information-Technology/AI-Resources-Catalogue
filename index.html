@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Resource Network</title>
+<meta name="description" content="Every free AI learning resource FIT has mapped across IBM SkillsBuild, Cisco NetAcad and Accenture Learning to Earning, with the skill areas and levels each one reaches.">
+<!--
+  ============================================================================
+  FIT AI CENTRE OF EXCELLENCE - AI RESOURCE NETWORK
+  ============================================================================
+  The whole mapped catalogue on one page: every resource, the skill areas it
+  covers and the level it reaches in each, the platform it sits on, how long
+  it takes and who it suits.
+
+  This is the "Whole network" table out of the AI Skills Route Map, given a
+  page of its own and the room to carry more. Three things are new here:
+  the chips name a level as well as a skill area, the columns sort, and each
+  row opens to show the description, tier, format and credential pathway that
+  the Pathfinder keeps for its own use.
+
+  The table is the page. Everything explanatory - what the eleven skill codes
+  mean, what the five levels mean, how to get on to each platform - is folded
+  away underneath it, so nothing stands between arriving and reading the list.
+
+  Generated from the Pathfinder's catalogue, so the two never disagree.
+  It is one file: no build step, no dependencies, nothing loaded but the
+  webfont, and it works from a file:// path.
+  ============================================================================
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap">
+<style>
+  :root{
+    color-scheme: light;
+    /* the two inks taken straight out of the supplied logo files */
+    --brand:#006da4; --signal:#ffcd34;
+    --navy:#002957; --navy-deep:#001b3d; --ink:#051a31;
+    --vivid:#006da4; --sky:#4c9fc4; --sky-pale:#92c9e2;
+    --paper:#ffffff; --paper-2:#f4f6f8; --paper-3:#e6edf2;
+    --rule:#d6dde3; --rule-strong:#93a5b2;
+    --text:#141414; --text-2:#54595f; --text-3:#7c8593;
+    --l1:#d3e9f4; --l2:#92c9e2; --l3:#4c9fc4; --l4:#006da4; --l5:#00466b;
+    --on1:#051a31; --on2:#051a31; --on3:#051a31; --on4:#ffffff; --on5:#ffffff;
+    /* v5: the +/- on a fold. Kept as its own token so the disclosure marker
+       can be retuned without touching the brand blue everything else uses. */
+    --fold:#006da4;
+    /* skill-code chips: four families, lightness steps inside each */
+    --sc-AIL:#d6e8f7; --sc-DAT:#a8cdea; --sc-MLF:#7db4dc;   /* understanding */
+    --sc-TUS:#d5f2e0; --sc-PRO:#93d9b6; --sc-IND:#5cc399;   /* doing */
+    --sc-ENG:#e2d8f7; --sc-OPS:#c0a9ea;   /* building */
+    --sc-ETG:#fce7e0; --sc-LDR:#efb59f; --sc-TCH:#d98c70;   /* responsibility */
+    --sc-ink:#0e2233;
+    /* Poppins throughout - one family, Regular as the working weight */
+    --sans:"Poppins", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    --mono:"Poppins", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--paper);color:var(--text);font-family:var(--sans);
+       font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.02em;text-wrap:balance}
+  p{margin:0}
+  a{color:inherit}
+  [hidden]{display:none !important}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  ::selection{background:var(--signal);color:var(--ink)}
+  .lab{font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase}
+  :focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+
+  /* ============================ masthead ============================ */
+  .masthead{background:var(--navy);color:#fff;border-bottom:4px solid var(--signal);
+            display:flex;align-items:center;gap:16px;padding:12px 22px;flex-wrap:wrap}
+  .mark{height:34px;width:auto;display:block}
+  .masthead .lab{color:var(--sky-pale)}
+
+  .sheet{max-width:1080px;margin:0 auto;padding:34px 22px 70px}
+
+  /* ============================ heading ============================= */
+  .cathead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--text);
+           padding-bottom:8px;flex-wrap:wrap}
+  .cathead .lab{color:var(--brand)}
+  .standfirst{margin:14px 0 0;color:var(--text-2);font-size:.94rem;max-width:74ch}
+
+  /* ============================ controls ============================ */
+  .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:22px 0 0}
+  .search{flex:1 1 260px;min-width:200px;position:relative;display:flex}
+  .search input{width:100%;font-family:var(--sans);font-size:.82rem;padding:9px 32px 9px 11px;
+                border:1px solid var(--rule-strong);background:var(--paper);color:var(--text)}
+  .search button{position:absolute;right:0;top:0;bottom:0;width:30px;border:0;background:none;
+                 color:var(--text-3);font-size:1rem;cursor:pointer;line-height:1}
+  .search button:hover{color:var(--text)}
+  select{font-family:var(--sans);font-size:.76rem;padding:8px 10px;border:1px solid var(--rule-strong);
+         background:var(--paper);color:var(--text)}
+  .count{font-family:var(--sans);font-size:.72rem;color:var(--text-3);margin-left:auto;
+         font-variant-numeric:tabular-nums}
+  .reset{font-family:var(--sans);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+         background:none;border:1px solid var(--rule-strong);color:var(--text-2);
+         padding:8px 11px;cursor:pointer}
+  .reset:hover{background:var(--paper-2);color:var(--text)}
+
+  /* ============================= table ============================== */
+  .tablewrap{overflow-x:auto;margin-top:14px}
+  table{border-collapse:collapse;width:100%;min-width:820px;font-size:.85rem}
+  th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--rule);vertical-align:top}
+  th{font-family:var(--sans);font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;
+     color:var(--text-2);border-bottom:2px solid var(--text);white-space:nowrap}
+  td.num{font-family:var(--sans);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  th.num{text-align:right}
+  tbody tr.res:hover{background:var(--paper-2);cursor:pointer}
+  tbody tr.res.open{background:var(--paper-2)}
+
+  /* sortable headings. The control is the whole heading, so the hit area is
+     the cell rather than a word inside it, and the arrow only ever marks the
+     column actually in force. */
+  th.sortable{padding:0}
+  th.sortable button{width:100%;text-align:inherit;font:inherit;letter-spacing:inherit;
+                     text-transform:inherit;color:inherit;background:none;border:0;
+                     padding:8px 11px;cursor:pointer;display:flex;gap:6px;align-items:center}
+  th.num.sortable button{justify-content:flex-end}
+  th.sortable button:hover{color:var(--text);background:var(--paper-2)}
+  th.sortable button::after{content:"";font-size:.9em;opacity:.45}
+  th[aria-sort="ascending"] button::after{content:"\2191";opacity:1;color:var(--brand)}
+  th[aria-sort="descending"] button::after{content:"\2193";opacity:1;color:var(--brand)}
+
+  /* skill codes as chips in a gutter to the left of the table. Real cells, so
+     they stay in line with their row whatever its height, but no rule and no
+     left padding, so they read as sitting outside the ruled area rather than
+     as a column. <abbr> is the honest element: the chip is an acronym and
+     title is its expansion. Colour groups the eleven areas into four families
+     - understanding, doing, building, responsibility - with lightness steps
+     inside each; the code and the level are always written, so colour assists
+     and never carries the meaning alone. */
+  th.codecell,td.codecell{border-bottom:0;padding-left:0;padding-right:14px;
+                          white-space:nowrap;width:1px;text-align:right}
+  .sc{display:inline-block;font-family:var(--sans);font-size:.66rem;font-weight:500;
+      letter-spacing:.06em;padding:3px 7px;margin:0 0 3px 3px;border:0;
+      background:var(--paper-3);color:var(--sc-ink);text-decoration:none;cursor:help;
+      font-variant-numeric:tabular-nums}
+  /* the level is separated by a hairline rather than by being faded. Fading it
+     cost 1.5 to 2.5 points of contrast, and on the four mid-tone chips - MLF,
+     IND, OPS and TCH - that dropped the digit below readable. The rule costs
+     nothing, since it is not carrying meaning. */
+  .sc b{font-weight:500;margin-left:5px;padding-left:5px;
+        border-left:1px solid rgba(14,34,51,.3)}
+  .sc-AIL{background:var(--sc-AIL)} .sc-DAT{background:var(--sc-DAT)}
+  .sc-MLF{background:var(--sc-MLF)} .sc-TUS{background:var(--sc-TUS)}
+  .sc-PRO{background:var(--sc-PRO)} .sc-IND{background:var(--sc-IND)}
+  .sc-ENG{background:var(--sc-ENG)} .sc-OPS{background:var(--sc-OPS)}
+  .sc-ETG{background:var(--sc-ETG)} .sc-LDR{background:var(--sc-LDR)}
+  .sc-TCH{background:var(--sc-TCH)}
+
+  .rname{display:block;line-height:1.35}
+  .rname a{text-decoration:none;box-shadow:inset 0 -1px 0 var(--rule-strong)}
+  .rname a:hover{box-shadow:inset 0 -2px 0 var(--brand);color:var(--brand)}
+  td.more{width:1px;padding-left:0;padding-right:4px}
+  .expand{border:1px solid var(--rule);background:var(--paper);color:var(--text-2);
+          font-family:var(--sans);font-size:.8rem;line-height:1;width:24px;height:24px;
+          cursor:pointer;padding:0}
+  .expand:hover{border-color:var(--brand);color:var(--brand)}
+  tr.res.open .expand{background:var(--brand);border-color:var(--brand);color:#fff}
+
+  /* the opened record */
+  tr.detail>td{padding:0 11px 16px;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+  .rec{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:8px 26px;
+       padding:12px 0 2px}
+  .rec p{font-size:.86rem;line-height:1.55;color:var(--text)}
+  .rec dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 12px;
+          font-size:.78rem;align-content:start}
+  .rec dt{font-family:var(--sans);font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;
+          color:var(--text-3);padding-top:2px;white-space:nowrap}
+  .rec dd{margin:0;color:var(--text)}
+  .rec .note{margin-top:9px;color:var(--text-2);font-size:.82rem}
+  .stamp{display:inline-block;font-family:var(--sans);font-size:.62rem;font-weight:500;
+         letter-spacing:.09em;text-transform:uppercase;background:var(--paper-3);
+         color:var(--text-2);padding:3px 7px;margin:0 4px 4px 0}
+  .empty{padding:34px 0;color:var(--text-2);font-size:.92rem}
+
+  /* ============================== folds ============================= */
+  .folds{margin-top:44px;border-top:2px solid var(--text)}
+  .fold{border-bottom:1px solid var(--rule)}
+  .fold>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;
+                padding:16px 0;font-family:var(--sans);font-size:.74rem;font-weight:500;
+                letter-spacing:.13em;text-transform:uppercase;color:var(--text)}
+  .fold>summary::-webkit-details-marker{display:none}
+  .fold>summary::after{content:"+";color:var(--fold);margin-left:auto;font-size:1rem;line-height:1}
+  .fold[open]>summary::after{content:"\2212"}
+  .fold>summary:hover{color:var(--brand)}
+  .foldbody{padding:0 0 26px}
+  .foldbody>p{color:var(--text-2);font-size:.88rem;max-width:74ch;margin-bottom:16px}
+
+  .codelist{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:10px 26px;margin:0}
+  .codeitem{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+  .codeitem .sc{cursor:default;margin:2px 0 0}
+  .codeitem b{display:block;font-weight:500;font-size:.88rem;line-height:1.3}
+  /* named, not `.codeitem span`: the chip beside this text is a <span> too, and
+     a descendant element selector outranks the .sc class that colours it */
+  .codeitem>span{display:block}
+  .codedesc{display:block;font-size:.8rem;color:var(--text-2);line-height:1.45}
+  .fam{font-family:var(--sans);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;
+       color:var(--text-3);margin:20px 0 8px;grid-column:1/-1}
+  .fam:first-child{margin-top:0}
+
+  .lvlist{display:grid;gap:2px;margin:0}
+  .lvrow{display:grid;grid-template-columns:auto 132px 1fr;gap:14px;align-items:baseline;
+         padding:9px 0;border-top:1px solid var(--rule)}
+  .lvrow:first-child{border-top:0}
+  /* The level tags carry their own ramp rather than the shared --l1..--l5,
+     which the Pathfinder uses for bar segments that hold no text. As type on a
+     colour those steps only reached 5.9:1 at level 3 and 5.6:1 at level 4 -
+     over the 4.5:1 floor, but thin for 11px letter-spaced caps, and it showed.
+     This ramp keeps the light-to-dark reading of "further along" and clears
+     7:1 at every step, flipping to white ink where the blue gets deep. */
+  .lvn{font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.08em;
+       padding:4px 10px;white-space:nowrap}
+  .lv1{background:#dbedf8;color:#051a31}   /* 14.6:1 */
+  .lv2{background:#9fcfe6;color:#051a31}   /* 10.5:1 */
+  .lv3{background:#0e5070;color:#ffffff}   /*  8.8:1 */
+  .lv4{background:#083a56;color:#ffffff}   /* 12.0:1 */
+  .lv5{background:#04263a;color:#ffffff}   /* 15.6:1 */
+  .lvrow b{font-weight:500;font-size:.88rem}
+  /* named for the same reason: `.lvrow span` beats .lv1-.lv5 on specificity and
+     would paint every level tag grey, whatever colour the tag asked for */
+  .lvd{font-size:.82rem;color:var(--text-2);line-height:1.45}
+
+  .plat{padding:14px 0;border-top:1px solid var(--rule)}
+  .plat:first-child{border-top:0}
+  .plat b{display:block;font-weight:500;font-size:.94rem;margin-bottom:4px}
+  .plat p{font-size:.84rem;color:var(--text-2);line-height:1.55;max-width:74ch}
+  .platbtn{display:inline-block;margin-top:10px;font-family:var(--sans);font-size:.7rem;
+           font-weight:500;letter-spacing:.11em;text-transform:uppercase;text-decoration:none;
+           background:var(--navy);color:#fff;padding:10px 15px}
+  .platbtn:hover{background:var(--brand);color:#fff}
+
+  .colophon{background:var(--ink);color:#8fa9c2;font-family:var(--sans);font-size:.68rem;
+            letter-spacing:.1em;text-transform:uppercase;padding:14px 22px;text-align:center}
+
+  @media (max-width:760px){
+    .rec{grid-template-columns:1fr}
+    .lvrow{grid-template-columns:auto 1fr;gap:6px 12px}
+    .lvd{grid-column:1/-1}
+    .count{margin-left:0;width:100%}
+  }
+  @media print{
+    .masthead,.controls,.folds,.colophon,td.more{display:none !important}
+    .tablewrap{overflow:visible}
+    table{min-width:0;font-size:8.5pt}
+    tr.res,tr.detail{break-inside:avoid}
+    .rname a{box-shadow:none}
+    .rname a::after{content:" (" attr(href) ")";font-size:.72em;color:#444;word-break:break-all}
+    .sc{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <img class="mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAC5BAMAAABgjx8CAAAAMFBMVEX/////////1DX/5Rn/////////zzT/0TT/AAD//1r/uTf/qlX/ewAAAAD/////zDNslammAAAAEHRSTlMKz/ITWKNdnwECBQMCAP7+hpTOaQAABuVJREFUeNrtnF+IVFUcx38zXh8UTowGM7XVunaDES05gdOfpcldxKUmld2gTYRsbBaVIWNLe9CnFsF6SFPQpWRGNgzCxdjFh7F2KS8NrNQYXExEHw5abw6aS0dcqUF7WJz7Z85v/t659wbnvO2cuXM/+/2d3/f8fmd3boBBO8fd5NpPRtLXu0RTCzYs7Nu1QHxdENo7vvmRTBx8KimYKX7OClOpreLLlPZSpYMATP09kxyrnAsBKaw5e225F2qBDqAXhzKCiUkAUupbPuMJFgCQwo1LOfEUezDarXmEBaS0N4FxTRx4IekRFrDSaEJHps4dzybdXvLlm6sgtgkAPaZnJvs9UQuATXwRTiIrrzi0ATzCAj0nCtbDjLjsFRbRp1IZNCNW5jzCAlIoDm2tNyMUcJEL83RgKiQtGeGeWgCk9Ppy1L6OPTnrERaw0mhCQzJi6ihJehJEAGDq3EeiXRuA6DE945FaAOz7Iydm0Yy47xUW6FPvkUnMvs7kvMIihWJqE5YRo+UN3W0sIIUbFwfRKudhRriOBaS0d3wGrXJeSXqEBaw02j2NVTlHM0n3DcKocrQerMrJeqQWAJs4+Cpa5aTu42pxanxGO2yCLsjyY8jGefHAuBiLU8LMhI6T2TzdlhFnL68UYfE449HeEADAg5saY8DjuuM2ERtCV95o+roiospHtxTLP0bXnma68zZRWFMlI3YqIqqRounnq3A8eg8cByMlhnP9ExRQHcraXrvalnSskhE/VGDF84cOV6C6vhHYg8gFVACcucxlx4rfuSU41tFdlovbgsjP3wLvBw/YsOL7XLu3ik/RhGITq0P0tgftUERRsQWrbt4W9EgsviaCyjiQ+jNoTUNhVwIl56likQxGpaRnuixBpAGXFjynb+ziWHC/vdZtrSDIgEshpIn3uYbJ+EjIWm8hC74NSbg5hZzB8Vg4G7RVp7Qb++XizlINpDSEivZlUvaimfQgn7PRWSolPYPcifZuvzNmw+J8zJXlrnya68Zk3FcMVTRklxxc09WsYXUCo0pPd1W2r89hHzXbaJiojlOFs2cwGdO59ZXNfpw4FCWV6RQ1rL5Mqh/z/cGyjGaD6BdspwwAQGtIKsLU3h5EL/ra9qEx1PcV0UFShcHNLb1wYenbtFGp8is6v0OtYfevCBUNZ029kAHI9U4b1QoGwCA6fLghqaIbb+CGlZ5ej+RI34epMRFWRSe7M68yUIHN1a0Xp4zv7Mji1pA+tx4DTlqCa2IJWN95d3+cATBQydwivW6ptpyqVssMjqMyapbgGljkGWv5sHdyHoZxUr9Uxeq1jFKv7xtLntrufrLMq9YlVZxFD52qRt2XHUJrmXdtvm/it/LO6aShM5vqUgHQxAd/o9bw09eAYlnHv7Sh3lBVOvTma5mKfzsw+VbIWtY35vkkobdYy2BY1tHjXi0j8P2gU9tzjVpmsEotI1hyJizr3qM5SBWLrMYNKycKbtuPdCkADWcEt+nqn69lhMUXhsWdOWjLfAlc7RUaVmiWqrHILXFJiKrlzCGNcnMdHdiXEhnWsj18YTj7KDSG5dDo2PZYelpoo4EdI2GBNdSwU6dG8WQOKd1PBF/6ecwrrDBWNUBwcDHaarUda/E4OoXPePM3n9pDYkksieWHoRj9wxJbn2+q0yteEb9mPpQyZkgT26tiVOwjgttWf8X82vPWGpo5plZndbU4rQSixnHxJttRBLSkVuCvOqrL2wSAW7F5ab4QH6t9+dMakZkosSSWxJJYEktiSSyJJbEkluMN2VKjxTC3AnxZjZ4HAAB0tXz5JktV/6ZmajGa+GNzAw0Z+LIhEw61TQ2ZoRaFVtSyXU2aYZGZKLEklsSSWBJLYkksiSWxJJbEklgSS2JJLIklsSSWxJJYEktiSSyJJbEklsTyDisk1WpgaC1e36ZvruRnfaKW9n8IokJ9iRXQ/YGlWx+0sohSX2Bxmzzv+CSItpTenzeIvcSyPUcpEH8YRR73z5IHsi6vAgCoKsnTlrVvftifo3TkWaYCAAM+4qXL007roidXnmAAwD++mi95h0Uqns2z6I89twOhX3TgtHETCxj/gbXEfDW3/4rCL9SY1Qpcx+6xrPGvHTsWRB5wdPNy6oN0R2sR5wyi5EssEh/2pVp80pdY+nlspsfTzWcV9aNahFAfGgRAfqFzZb6TFcSqYT+uLWI8KMhPQQQdmtiU249F6D1f9on5wrAP1QKiCp/xF2pJrR4HVtfLEceDqFnTqlbaCV/NX4k4HcQXd5gnPqt4q2VaMD8fRhZ53JaOfLaJwwKnn8CsMvWtr8xQu0+zlrBETzCw3LDGfJkLor0XGACAqqy9+VtTbvYfABo3NHCySloAAAAASUVORK5CYII=" alt="FIT">
+  <span class="lab">AI Centre of Excellence</span>
+</header>
+
+<main class="sheet">
+  <div class="cathead">
+    <span class="lab">Resource network</span>
+    <h1>All 114 mapped resources</h1>
+  </div>
+  <p class="standfirst">Every free resource FIT has mapped across IBM SkillsBuild, Cisco NetAcad and Accenture Learning to Earning, with the skill areas each one covers and the level it takes you to. Search or filter to narrow the list, click any column heading to sort, and open a row for the full record. What the codes and levels mean is at the foot of the page.</p>
+
+  <div class="controls">
+    <div class="search">
+      <label class="sr" for="q">Search resources</label>
+      <input id="q" type="search" placeholder="Search resources, platforms, descriptions…" autocomplete="off">
+      <button type="button" id="qClear" aria-label="Clear the search">×</button>
+    </div>
+    <label class="sr" for="fCode">Skill area</label>
+    <select id="fCode">
+      <option value="">All skill areas</option>
+      <option value="AIL">AIL · AI awareness and literacy</option>
+      <option value="ETG">ETG · Ethics, risk and governance</option>
+      <option value="TUS">TUS · Tool use and productivity</option>
+      <option value="PRO">PRO · Prompting and human-AI work</option>
+      <option value="DAT">DAT · Data literacy and handling</option>
+      <option value="IND">IND · AI in your industry</option>
+      <option value="MLF">MLF · Machine learning foundations</option>
+      <option value="ENG">ENG · AI engineering and development</option>
+      <option value="OPS">OPS · Deployment, operations, security</option>
+      <option value="LDR">LDR · Leadership, strategy and change</option>
+      <option value="TCH">TCH · Teaching and facilitation</option>
+    </select>
+    <label class="sr" for="fLevel">Level</label>
+    <select id="fLevel">
+      <option value="">All levels</option>
+      <option value="1">Level 1 · Aware</option>
+      <option value="2">Level 2 · Assisted user</option>
+      <option value="3">Level 3 · Independent user</option>
+      <option value="4">Level 4 · Practitioner</option>
+      <option value="5">Level 5 · Specialist / lead</option>
+    </select>
+    <label class="sr" for="fPlat">Platform</label>
+    <select id="fPlat">
+      <option value="">All platforms</option>
+      <option>IBM SkillsBuild</option>
+      <option>Learning to Earning</option>
+      <option>Cisco NetAcad</option>
+    </select>
+    <button type="button" class="reset" id="reset">Reset</button>
+    <span class="count" id="count" role="status"></span>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <caption class="sr">Every mapped resource, with the skill areas and levels it covers, the platform it sits on, how long it takes and who it suits. Column headings sort the table.</caption>
+      <thead><tr><th scope="col" class="codecell"><span class="sr">Skill areas and levels</span></th><th scope="col" class="sortable" data-k="n" aria-sort="ascending"><button type="button">Resource</button></th><th scope="col" class="sortable" data-k="p"><button type="button">Platform</button></th><th scope="col" class="sortable num" data-k="mins"><button type="button">Time</button></th><th scope="col" class="sortable" data-k="a"><button type="button">Best fit</button></th><th scope="col" class="more"><span class="sr">Full record</span></th></tr></thead>
+      <tbody id="body"></tbody>
+    </table>
+    <p class="empty" id="empty" hidden>Nothing matches that. Try a different word, or reset the filters.</p>
+  </div>
+
+  <div class="folds">
+    <details class="fold">
+      <summary>The eleven skill areas</summary>
+      <div class="foldbody">
+        <p>Every resource is mapped to the areas it genuinely covers and the level it reaches in each. The chips in the table carry the code and that level. Colour groups the areas into four families; the code is always written, so the colour is a help rather than the meaning.</p>
+        <div class="codelist">
+          <p class="fam">Understanding</p>
+          <div class="codeitem"><span class="sc sc-AIL">AIL</span><span><b>AI awareness and literacy</b><span class="codedesc">What AI is, how it works, where it shows up</span></span></div>
+          <div class="codeitem"><span class="sc sc-DAT">DAT</span><span><b>Data literacy and handling</b><span class="codedesc">Questioning data, cleaning it, reading it honestly</span></span></div>
+          <div class="codeitem"><span class="sc sc-MLF">MLF</span><span><b>Machine learning foundations</b><span class="codedesc">How models learn, train and get evaluated</span></span></div>
+          <p class="fam">Doing</p>
+          <div class="codeitem"><span class="sc sc-TUS">TUS</span><span><b>Tool use and productivity</b><span class="codedesc">Getting real work done with mainstream AI tools</span></span></div>
+          <div class="codeitem"><span class="sc sc-PRO">PRO</span><span><b>Prompting and human-AI work</b><span class="codedesc">Prompt design, verification, knowing when not to use AI</span></span></div>
+          <div class="codeitem"><span class="sc sc-IND">IND</span><span><b>AI in your industry</b><span class="codedesc">Applying AI in a specific occupational context</span></span></div>
+          <p class="fam">Building</p>
+          <div class="codeitem"><span class="sc sc-ENG">ENG</span><span><b>AI engineering and development</b><span class="codedesc">Code, APIs, RAG, agents, evaluation harnesses</span></span></div>
+          <div class="codeitem"><span class="sc sc-OPS">OPS</span><span><b>Deployment, operations, security</b><span class="codedesc">Running AI safely in production</span></span></div>
+          <p class="fam">Responsibility</p>
+          <div class="codeitem"><span class="sc sc-ETG">ETG</span><span><b>Ethics, risk and governance</b><span class="codedesc">Bias, privacy, IP, the EU AI Act, acceptable use</span></span></div>
+          <div class="codeitem"><span class="sc sc-LDR">LDR</span><span><b>Leadership, strategy and change</b><span class="codedesc">Use cases, business cases, policy, workforce change</span></span></div>
+          <div class="codeitem"><span class="sc sc-TCH">TCH</span><span><b>Teaching and facilitation</b><span class="codedesc">Teaching with AI, assessment, upskilling others</span></span></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="fold">
+      <summary>The five levels</summary>
+      <div class="foldbody">
+        <p>FIT’s Generative AI Skills levels. A resource’s level is the point it takes you to in that skill area, judged from what the course actually asks you to do — not from its title. Level 0 means no exposure and is never assigned to a resource.</p>
+        <div class="lvlist">
+          <div class="lvrow"><span class="lvn lv1">Level 1</span><b>Aware</b><span class="lvd">Can describe AI in plain terms, spot where it is being used, name obvious risks</span></div>
+          <div class="lvrow"><span class="lvn lv2">Level 2</span><b>Assisted user</b><span class="lvd">Can use a mainstream AI tool for a defined task when given a template or walkthrough</span></div>
+          <div class="lvrow"><span class="lvn lv3">Level 3</span><b>Independent user</b><span class="lvd">Chooses the tool unprompted, works without a script, appraises output critically</span></div>
+          <div class="lvrow"><span class="lvn lv4">Level 4</span><b>Practitioner</b><span class="lvd">Builds, configures, integrates or teaches; evaluates rigorously; handles failure modes</span></div>
+          <div class="lvrow"><span class="lvn lv5">Level 5</span><b>Specialist / lead</b><span class="lvd">Sets standards, governs, designs novel solutions, owns outcomes at organisational scale</span></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="fold">
+      <summary>Getting on to the platforms</summary>
+      <div class="foldbody">
+        <p>All three are free. Every resource here links straight to its course page, which will ask you to sign in, so it is worth joining first.</p>
+        <div class="plat"><b>IBM SkillsBuild</b><p>Free. The button here is FIT's referral link, so your enrolment is credited to FIT - use it rather than searching for SkillsBuild. Create an IBMid, or sign in with Google or GitHub, then enter the code IBM emails you.</p><a class="platbtn" href="https://sb-auth.skillsbuild.org/signup?ngo-id=0193" target="_blank" rel="noopener">Sign up through FIT &#8599;</a></div>
+        <div class="plat"><b>Learning to Earning</b><p>Free registration through Accenture's Learning to Earning portal.</p><a class="platbtn" href="https://www.l2eportal.accenture.com/" target="_blank" rel="noopener">Open Learning to Earning &#8599;</a></div>
+        <div class="plat"><b>Cisco NetAcad</b><p>Free. Course pages are public, so open the course from your route and choose Get Started With Self-Paced - the account is created as you enrol. Most of these courses also have an instructor-led option through an academy.</p><a class="platbtn" href="https://www.netacad.com/" target="_blank" rel="noopener">Open Cisco NetAcad &#8599;</a></div>
+      </div>
+    </details>
+  </div>
+</main>
+
+<p class="colophon">FIT · AI Centre of Excellence</p>
+
+<script>
+const CODES = [{"k":"AIL","n":"AI awareness and literacy","sn":"AI literacy","s":"What AI is, how it works, where it shows up"},{"k":"ETG","n":"Ethics, risk and governance","sn":"ethics and risk","s":"Bias, privacy, IP, the EU AI Act, acceptable use"},{"k":"TUS","n":"Tool use and productivity","sn":"tool use","s":"Getting real work done with mainstream AI tools"},{"k":"PRO","n":"Prompting and human-AI work","sn":"prompting","s":"Prompt design, verification, knowing when not to use AI"},{"k":"DAT","n":"Data literacy and handling","sn":"data literacy","s":"Questioning data, cleaning it, reading it honestly"},{"k":"IND","n":"AI in your industry","sn":"industry practice","s":"Applying AI in a specific occupational context"},{"k":"MLF","n":"Machine learning foundations","sn":"ML foundations","s":"How models learn, train and get evaluated"},{"k":"ENG","n":"AI engineering and development","sn":"AI engineering","s":"Code, APIs, RAG, agents, evaluation harnesses"},{"k":"OPS","n":"Deployment, operations, security","sn":"AI operations","s":"Running AI safely in production"},{"k":"LDR","n":"Leadership, strategy and change","sn":"AI leadership","s":"Use cases, business cases, policy, workforce change"},{"k":"TCH","n":"Teaching and facilitation","sn":"teaching with AI","s":"Teaching with AI, assessment, upskilling others"}];
+const R = [{"n":"Foundations in Generative AI","p":"IBM SkillsBuild","pw":"Getting Started with Generative AI","t":"Foundational","tm":"60mins","mins":60,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3955079/trainingInstanceId/course:3955079_4526809/en-US","c":{"AIL":1,"PRO":2},"f":"e-learning module","a":"Complete beginner","b":"You'll explore the steps in the generative AI process and discover how large language models (LLMs) generate text based on input prompts.","nt":"","ct":"pathway"},{"n":"Ethical Considerations for Generative AI","p":"IBM SkillsBuild","pw":"Getting Started with Generative AI","t":"Foundational","tm":"90mins","mins":90,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4058916/trainingInstanceId/course:4058916_4630711/en-US","c":{"ETG":2},"f":"e-learning module","a":"Complete beginner","b":"You'll explore the fascinating and complex world of ethics as they relate to generative AI.","nt":"","ct":"pathway"},{"n":"Introduction to LLMs","p":"IBM SkillsBuild","pw":"Getting Started with Generative AI","t":"Foundational","tm":"90mins","mins":90,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4058915/trainingInstanceId/course:4058915_4630710/en-US","c":{"AIL":2,"TUS":1,"PRO":2},"f":"e-learning module","a":"Complete beginner","b":"You'll learn how to apply these AI models in real-world situations such as customer service and content creation.","nt":"","ct":"pathway"},{"n":"Using Prompt Writing Techniques to Craft a LinkedIn Profile","p":"IBM SkillsBuild","pw":"Getting Started with Generative AI","t":"Foundational","tm":"10mins","mins":10,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4063513/trainingInstanceId/course:4063513_4635492/en-US","c":{"TUS":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Jobseeker","b":"You'll assume the persona of a biotech student and apply prompting techniques using Microsoft Copilot to draft effective content.","nt":"","ct":"pathway"},{"n":"Using Prompting Techniques to Organise a Daily Work & Personal Routine","p":"IBM SkillsBuild","pw":"Getting Started with Generative AI","t":"Foundational","tm":"10mins","mins":10,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4063811/trainingInstanceId/course:4063811_4635790/en-US","c":{"TUS":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Everyday user (non-technical)","b":"You'll assume the persona of a research intern and apply prompting techniques using Microsoft Copilot to organize a work, exercise, and meal routine.","nt":"","ct":"pathway"},{"n":"Exploring Artificial Intelligence","p":"IBM SkillsBuild","pw":"AI Literacy","t":"Foundational","tm":"90mins","mins":90,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3825247/trainingInstanceId/course:3825247_4396924/en-US","c":{"AIL":1},"f":"e-learning module","a":"Complete beginner","b":"You'll discover what AI is, learn about different types of AI, and explore different technologies that enable AI-powered applications.","nt":"","ct":"pathway"},{"n":"Interacting with AI","p":"IBM SkillsBuild","pw":"AI Literacy","t":"Foundational","tm":"2hrs 15mins","mins":135,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3947336/trainingInstanceId/course:3947336_4519033/en-US","c":{"AIL":1,"TUS":2},"f":"e-learning module","a":"Complete beginner","b":"You'll explore some of the ways people and businesses engage with AI.","nt":"","ct":"pathway"},{"n":"Introduction to AI","p":"IBM SkillsBuild","pw":"AI Fundamentals: Foundations for Understanding AI","t":"Basic","tm":"60mins","mins":60,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3955161/trainingInstanceId/course:3955161_4526897/en-US","c":{"AIL":1},"f":"e-learning module","a":"Complete beginner","b":"You'll explore what AI is, why it matters in a data-driven world, and how its core capabilities can help solve real-world problems.","nt":"","ct":"pathway"},{"n":"The Intelligence of AI","p":"IBM SkillsBuild","pw":"AI Fundamentals: Foundations for Understanding AI","t":"Basic","tm":"70mins","mins":70,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3955163/trainingInstanceId/course:3955163_4526899/en-US","c":{"AIL":1,"MLF":1},"f":"e-learning module","a":"Complete beginner","b":"You'll explore the building blocks of artificial intelligence, compare human and machine learning, and discover AI capabilities, such as speed of computation, real-time adjustment, and scalability.","nt":"","ct":"pathway"},{"n":"Machine Learning","p":"IBM SkillsBuild","pw":"AI Fundamentals: Foundations for Understanding AI","t":"Fluency","tm":"2hrs","mins":120,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3955165/trainingInstanceId/course:3955165_4526901/en-US","c":{"DAT":1,"MLF":2},"f":"e-learning module","a":"Aspiring technical","b":"You'll learn about the different types of machine learning methods, explore how classical models approach data processing, and understand how these methods impact AI outputs and improve performance in dynamic environments.","nt":"","ct":"pathway"},{"n":"Neural Networks & Deep Learning","p":"IBM SkillsBuild","pw":"AI Fundamentals: Foundations for Understanding AI","t":"Fluency","tm":"2hrs","mins":120,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3955167/trainingInstanceId/course:3955167_4526903/en-US","c":{"AIL":1,"ETG":1,"MLF":1},"f":"e-learning module","a":"Aspiring technical","b":"You'll explore how neural networks learn, what makes deep learning effective, how and where deep learning is applied today, and deep learning's challenges and limitations as it continues to evolve rapidly.","nt":"","ct":"pathway"},{"n":"AI Forms & Functions","p":"IBM SkillsBuild","pw":"AI Fundamentals: Foundations for Understanding AI","t":"Basic","tm":"3hrs","mins":180,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3955169/trainingInstanceId/course:3955169_4526905/en-US","c":{"AIL":2,"ETG":1,"PRO":2},"f":"e-learning module","a":"Complete beginner","b":"You'll explore predictive AI, decision-making AI, computer vision, and generative AI, and how these different forms of AI are used.","nt":"","ct":"pathway"},{"n":"AI in the Real World","p":"IBM SkillsBuild","pw":"AI Fundamentals: Language & Vision in AI","t":"Basic","tm":"1hr 45mins","mins":105,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4061811/trainingInstanceId/course:4061811_4633650/en-US","c":{"AIL":2,"ETG":1,"TUS":1},"f":"e-learning module","a":"Complete beginner","b":"You'll learn about writing search queries, identifying AI recommendations based on data input, and recognizing AI ethics implications when using AI technologies.","nt":"","ct":"pathway"},{"n":"Natural & Artificial Language Processing","p":"IBM SkillsBuild","pw":"AI Fundamentals: Language & Vision in AI","t":"Fluency","tm":"2hrs 40mins","mins":160,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4061813/trainingInstanceId/course:4061813_4633652/en-US","c":{"AIL":2,"MLF":1},"f":"e-learning module","a":"Aspiring technical","b":"You'll classify how AI systems process and interpret human language, differentiate features of conversational AI systems, identify the limitations of natural language processing predictions, and explain how language model accuracy...","nt":"","ct":"pathway"},{"n":"Computer Vision","p":"IBM SkillsBuild","pw":"AI Fundamentals: Language & Vision in AI","t":"Fluency","tm":"2hrs 15mins","mins":135,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4061815/trainingInstanceId/course:4061815_4633654/en-US","c":{"ETG":1,"TUS":2,"MLF":1},"f":"e-learning module","a":"Aspiring technical","b":"You'll explore how machines process and classify images, experiment with Google Gemini to create visual assets, and examine the responsible use of AI in image generation.","nt":"","ct":"pathway"},{"n":"AI Agents","p":"IBM SkillsBuild","pw":"AI Fundamentals: Language & Vision in AI","t":"Fluency","tm":"2hrs 30mins","mins":150,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4061817/trainingInstanceId/course:4061817_4633656/en-US","c":{"AIL":2,"ETG":1},"f":"e-learning module","a":"Complete beginner","b":"You'll explore how AI agents work, what differentiates them from traditional automated systems, and how they learn to make better decisions.","nt":"","ct":"pathway"},{"n":"Your Future in AI","p":"IBM SkillsBuild","pw":"AI Fundamentals: Language & Vision in AI","t":"Fluency","tm":"90mins","mins":90,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4061819/trainingInstanceId/course:4061819_4633658/en-US","c":{"AIL":1},"f":"e-learning module","a":"Jobseeker","b":"You'll discover the factors driving job growth in AI today.","nt":"Useful as an introductory exercise, even for non-technical learners","ct":"pathway"},{"n":"AI Impact","p":"IBM SkillsBuild","pw":"Responsible AI & Risk Management","t":"Basic","tm":"5hrs 15mins","mins":315,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068807/trainingInstanceId/course:4068807_4641211/en-US","c":{"AIL":2,"TUS":3,"LDR":2},"f":"multi-module course","a":"Everyday user (non-technical)","b":"You'll explore how to apply AI effectively in real-world situations.","nt":"Very detailed resource, \"zero to hero\" approach","ct":"pathway"},{"n":"Decoding Responsible AI: Upholding Pillars of Trust","p":"IBM SkillsBuild","pw":"Responsible AI & Risk Management","t":"Fluency","tm":"4hrs 45mins","mins":285,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068808/trainingInstanceId/course:4068808_4641212/en-US","c":{"ETG":3},"f":"multi-module course","a":"Manager / SME owner","b":"You'll explore the ethical dimensions of AI and how they shape our technological landscape.","nt":"","ct":"pathway"},{"n":"Navigating AI Risks & Data Security","p":"IBM SkillsBuild","pw":"Responsible AI & Risk Management","t":"Fluency","tm":"4hrs 45mins","mins":285,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068809/trainingInstanceId/course:4068809_4641213/en-US","c":{"ETG":3,"DAT":2},"f":"multi-module course","a":"Everyday user (non-technical)","b":"You'll learn about the risks AI systems pose in everyday tasks and how these risks are classified.","nt":"","ct":"pathway"},{"n":"AI-Powered Decision Making & Automation","p":"IBM SkillsBuild","pw":"Responsible AI & Risk Management","t":"Fluency","tm":"4hrs 10mins","mins":250,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068810/trainingInstanceId/course:4068810_4641214/en-US","c":{"AIL":2,"IND":2,"LDR":2},"f":"multi-module course","a":"Manager / SME owner","b":"You'll explore how AI and human capabilities work together in real-world scenarios.","nt":"","ct":"pathway"},{"n":"Develop an AI Solution for a Public Health Organisation","p":"IBM SkillsBuild","pw":"Responsible AI & Risk Management","t":"Fluency","tm":"2hrs 15mins","mins":135,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068811/trainingInstanceId/course:4068811_4641215/en-US","c":{"ETG":3,"TUS":2,"IND":3,"LDR":3},"f":"capstone scenario","a":"Manager / SME owner","b":"You guide the Tri-County Wellness Alliance through adopting AI responsibly - analysing solutions, assessing ethical implications and recommending risk mitigations.","nt":"Capstone project","ct":"pathway"},{"n":"Amplifying AI Capabilities","p":"IBM SkillsBuild","pw":"AI Efficiencies & Governance","t":"Fluency","tm":"4hrs 10mins","mins":250,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068812/trainingInstanceId/course:4068812_4641216/en-US","c":{"AIL":2,"TUS":2,"PRO":2},"f":"multi-module course","a":"Everyday user (non-technical)","b":"You'll compare how AI systems and humans solve problems, discovering where each excels.","nt":"","ct":"pathway"},{"n":"Strategic AI Adoption","p":"IBM SkillsBuild","pw":"AI Efficiencies & Governance","t":"Fluency","tm":"3hrs 20mins","mins":200,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068813/trainingInstanceId/course:4068813_4641217/en-US","c":{"LDR":3},"f":"multi-module course","a":"Manager / SME owner","b":"You'll examine how to apply AI automation to everyday tasks, prioritize tasks based on ease and efficiency, and evaluate which tasks are most suitable for AI automation.","nt":"Management level, strategic capabilities-enhancement to a course of practical AI","ct":"pathway"},{"n":"AI Applications in Society","p":"IBM SkillsBuild","pw":"AI Efficiencies & Governance","t":"Fluency","tm":"4hrs 40mins","mins":280,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068814/trainingInstanceId/course:4068814_4641218/en-US","c":{"IND":3,"LDR":3},"f":"multi-module course","a":"Manager / SME owner","b":"You'll explore how AI applications vary across the healthcare, consumer, financial, industrial, technology, and public sectors.","nt":"Management level, strategic capabilities-enhancement to a course of practical AI","ct":"pathway"},{"n":"Evaluate AI Use to Increase Efficiencies in Operational Workflows","p":"IBM SkillsBuild","pw":"AI Efficiencies & Governance","t":"Fluency","tm":"2hrs 15mins","mins":135,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068815/trainingInstanceId/course:4068815_4641219/en-US","c":{"ETG":2,"OPS":2,"LDR":3},"f":"capstone scenario","a":"Manager / SME owner","b":"You'll apply structured evaluation and governance reasoning as you guide MetroFleet Operations in making informed decisions about where AI fits into operational workflows, how much autonomy it should have, and which safeguards are required.","nt":"Capstone project. Management level, strategic capabilities-enhancement to a course of practical AI","ct":"pathway"},{"n":"Generating Effective Prompts for AI","p":"IBM SkillsBuild","pw":"Human-AI Collaborative Planning","t":"Basic","tm":"4hrs 40mins","mins":280,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068816/trainingInstanceId/course:4068816_4641220/en-US","c":{"PRO":2},"f":"multi-module course","a":"Everyday user (non-technical)","b":"You'll learn about the key elements that make prompts clear and effective.","nt":"Enhancement to a basic/foundational course focusing on GenAI/Copilot etc.","ct":"pathway"},{"n":"Refining AI Outputs for Clarity & Task Alignment","p":"IBM SkillsBuild","pw":"Human-AI Collaborative Planning","t":"Fluency","tm":"5hrs","mins":300,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068817/trainingInstanceId/course:4068817_4641221/en-US","c":{"PRO":3},"f":"multi-module course","a":"Everyday user (non-technical)","b":"You'll explore how to identify and address issues in AI-generated outputs.","nt":"Taking the next step post \"simple\" prompt engineering, suitable for strategic/policy planners","ct":"pathway"},{"n":"Navigating AI Tools: A Selection Framework","p":"IBM SkillsBuild","pw":"Human-AI Collaborative Planning","t":"Fluency","tm":"4hrs 40mins","mins":280,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4068818/trainingInstanceId/course:4068818_4641222/en-US","c":{"TUS":3,"LDR":2},"f":"multi-module course","a":"Manager / SME owner","b":"You'll learn how to compare AI tools based on their strengths and limitations.","nt":"Strategic-level implementation and discernment","ct":"pathway"},{"n":"Validating the Legal Workflows of an AI Deployment","p":"IBM SkillsBuild","pw":"Human-AI Collaborative Planning","t":"Fluency","tm":"2hrs","mins":120,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4069016/trainingInstanceId/course:4069016_4641421/en-US","c":{"ETG":2,"TUS":3,"PRO":3,"IND":2},"f":"capstone scenario","a":"Technical practitioner","b":"You'll serve as an AI trainer for LumenAI, applying structured validation and deployment reasoning as you guide the law firm Harrison & Cole LLP in preparing its AI model for controlled legal pilot use.","nt":"Capstone project. Could enhance an AI Act Explainer course","ct":"pathway"},{"n":"Human-in-the-Loop AI: Optimising Collaboration & Decision Making","p":"IBM SkillsBuild","pw":"Enterprise AI Business Solutions","t":"Fluency","tm":"4hrs 50mins","mins":290,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4069094/trainingInstanceId/course:4069094_4641499/en-US","c":{"TUS":3,"PRO":3},"f":"multi-module course","a":"Everyday user (non-technical)","b":"You'll explore how AI tools can support your thinking and creativity in everyday tasks, learn how to plan work that combines human input with AI assistance, and develop strategies to balance both roles for highly effective collaboration...","nt":"","ct":"pathway"},{"n":"Unlocking Business Value with Enterprise AI","p":"IBM SkillsBuild","pw":"Enterprise AI Business Solutions","t":"Fluency","tm":"5hrs","mins":300,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4069095/trainingInstanceId/course:4069095_4641500/en-US","c":{"LDR":3},"f":"multi-module course","a":"Manager / SME owner","b":"You'll learn to apply the capabilities of AI solutions to solve business challenges.","nt":"","ct":"pathway"},{"n":"The Evolving World of AI: Emerging Technologies & Applications","p":"IBM SkillsBuild","pw":"Enterprise AI Business Solutions","t":"Fluency","tm":"3hrs 35mins","mins":215,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4069096/trainingInstanceId/course:4069096_4641501/en-US","c":{"AIL":2,"LDR":1},"f":"multi-module course","a":"Manager / SME owner","b":"You'll learn about the latest AI advancements that address everyday challenges, explore how future developments in AI could improve your personal productivity, and discover how AI might help solve both personal and organizational...","nt":"","ct":"pathway"},{"n":"Design an AI-Supported Marketing Campaign","p":"IBM SkillsBuild","pw":"Enterprise AI Business Solutions","t":"Fluency","tm":"2hrs 15mins","mins":135,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4071174/trainingInstanceId/course:4071174_4643734/en-US","c":{"ETG":2,"IND":3,"LDR":3},"f":"capstone scenario","a":"Manager / SME owner","b":"You'll apply human-AI collaboration reasoning, enterprise AI strategy, and future-focused planning as you guide HorizonCare, a healthcare organization, in developing a responsible and scalable approach to AI-supported marketing.","nt":"Capstone project","ct":"pathway"},{"n":"Intelligent by Design: Build an AI Agent","p":"IBM SkillsBuild","pw":"Build an AI Agent","t":"Fluency","tm":"3hrs 30mins","mins":210,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3946359/trainingInstanceId/course:3946359_4517982/en-US","c":{"ETG":2,"ENG":4,"OPS":3},"f":"hands-on lab","a":"Technical practitioner","b":"You'll explore how AI agents work, the different types available, and how to structure workflows that help them achieve specific goals.","nt":"Uses Watson to build agents, for advanced learners with technical skills","ct":"pathway"},{"n":"Unleashing the Power of AI Agents","p":"IBM SkillsBuild","pw":"Make Agentic AI Work for You","t":"Basic","tm":"90mins","mins":90,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3825456/trainingInstanceId/course:3825456_4397144/en-US","c":{"AIL":2},"f":"e-learning module","a":"Everyday user (non-technical)","b":"You'll learn about AI agents, how they perform tasks, and the different types of AI agents that exist.","nt":"Could also be suitable for foundational tier learners","ct":"pathway"},{"n":"Introduction to Retrieval Augmented Generation","p":"IBM SkillsBuild","pw":"Make Agentic AI Work for You","t":"Basic","tm":"90mins","mins":90,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3825461/trainingInstanceId/course:3825461_4397149/en-US","c":{"AIL":2,"ENG":2},"f":"click-through simulation","a":"Aspiring technical","b":"You'll learn what RAG is and identify its key use cases.","nt":"Upper end of the basic tier/introduction to fluency tier","ct":"pathway"},{"n":"The Rise of Multiagent Systems","p":"IBM SkillsBuild","pw":"Make Agentic AI Work for You","t":"Basic","tm":"90mins","mins":90,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3826474/trainingInstanceId/course:3826474_4398211/en-US","c":{"AIL":2},"f":"e-learning module","a":"Everyday user (non-technical)","b":"You learn about multiagent systems and how they differ from single-agent systems.","nt":"Upper end of the basic tier/introduction to fluency tier","ct":"pathway"},{"n":"Machine Learning for Data Science Projects","p":"IBM SkillsBuild","pw":"Machine Learning for Data Science Projects","t":"Fluency","tm":"~5hrs","mins":300,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4058880/trainingInstanceId/course:4058880_4630675/en-US","c":{"DAT":3,"MLF":4,"ENG":2,"OPS":2},"f":"hands-on lab","a":"Technical practitioner","b":"Applies machine-learning models inside real data-science work: modelling techniques, accuracy/precision/recall, decision trees, then predicting fraud with AutoAI.","nt":"Fluency+. Knowledge of Jupyter notebooks etc. needed","ct":"pathway"},{"n":"The Intersection of AI & Sustainability","p":"IBM SkillsBuild","pw":"AI for Sustainability","t":"Basic","tm":"3hrs","mins":180,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3947259/trainingInstanceId/course:3947259_4518956/en-US","c":{"AIL":1,"ETG":2,"IND":2},"f":"multi-module course","a":"Complete beginner","b":"You will explore the relationship between AI and sustainable practices, learning how to harness AI's power to address sustainability issues.","nt":"Covers a lot of the basics. Could be used in foundational tier and as an introduction to the fluency tier","ct":"pathway"},{"n":"Social Sustainability & AI","p":"IBM SkillsBuild","pw":"AI for Sustainability","t":"Basic","tm":"2hrs","mins":120,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3947258/trainingInstanceId/course:3947258_4518955/en-US","c":{"DAT":2,"IND":2,"LDR":1},"f":"multi-module course","a":"Manager / SME owner","b":"You'll explore the role of AI in promoting social sustainability.","nt":"Basic+. Application to strategic positions","ct":"pathway"},{"n":"Economic Sustainability & AI","p":"IBM SkillsBuild","pw":"AI for Sustainability","t":"Basic","tm":"2hrs","mins":120,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3947260/trainingInstanceId/course:3947260_4518957/en-US","c":{"IND":2,"MLF":2},"f":"multi-module course","a":"Manager / SME owner","b":"You'll learn about economic sustainability, its significance, and its challenges.","nt":"Basic+. Application to strategic positions","ct":"pathway"},{"n":"Environmental Sustainability & AI","p":"IBM SkillsBuild","pw":"AI for Sustainability","t":"Basic","tm":"2hrs","mins":120,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3947267/trainingInstanceId/course:3947267_4518964/en-US","c":{"DAT":2,"IND":2,"LDR":1},"f":"multi-module course","a":"Manager / SME owner","b":"You'll learn about the impact of using AI to solve environmental sustainability issues using real-world scenarios.","nt":"Basic+. Application to strategic positions","ct":"pathway"},{"n":"Implement an AI Solution for a Sustainability Issue","p":"IBM SkillsBuild","pw":"AI for Sustainability","t":"Fluency","tm":"2hrs","mins":120,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3947268/trainingInstanceId/course:3947268_4518965/en-US","c":{"DAT":2,"IND":3,"MLF":2,"LDR":2},"f":"capstone scenario","a":"Manager / SME owner","b":"You'll implement an AI solution to solve a sustainability issue using a systematic six-step approach as illustrated in the following graphic.","nt":"Could work as capstone to basic tier course","ct":"pathway"},{"n":"Building Capacity: AI for Professional Learning & Reflective Practice","p":"IBM SkillsBuild","pw":"Professional Growth & Future Readiness with AI","t":"Basic","tm":"60mins","mins":60,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4082670/trainingInstanceId/course:4082670_4656199/en-US","c":{"TUS":2,"TCH":2},"f":"e-learning module","a":"Educator / trainer","b":"It invites you to experiment with AI as a partner in professional growth.","nt":"Could cap a foundational tier course or introduce a fluency tier one","ct":"pathway"},{"n":"Optimising Educator Workflows with AI","p":"IBM SkillsBuild","pw":"Professional Growth & Future Readiness with AI","t":"Basic","tm":"60mins","mins":60,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4082671/trainingInstanceId/course:4082671_4656200/en-US","c":{"ETG":2,"TUS":2,"TCH":2},"f":"e-learning module","a":"Educator / trainer","b":"Every teaching day is filled with more tasks than time. You respond to emails between lessons, adjust plans when students need more support, rewrite materials to make them clearer or more accessible, and try to stay organized while...","nt":"Good for teachers/educators","ct":"pathway"},{"n":"Capstone Project: Strengthening Your Practice: Using AI for Your Workflow and Growth","p":"IBM SkillsBuild","pw":"Professional Growth & Future Readiness with AI","t":"Basic","tm":"30mins","mins":30,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4082672/trainingInstanceId/course:4082672_4656201/en-US","c":{"TUS":2,"TCH":2},"f":"capstone scenario","a":"Educator / trainer","b":"There is a whole side of teaching that begins when the class ends-one filled with planning, reflection, and preparation that often goes unseen but shapes everything that happens in the classroom.","nt":"Capstone project","ct":"pathway"},{"n":"Preparing Students for an AI-Transformed Workforce","p":"IBM SkillsBuild","pw":"Professional Growth & Future Readiness with AI","t":"Basic","tm":"60mins","mins":60,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4082673/trainingInstanceId/course:4082673_4656202/en-US","c":{"AIL":1,"TCH":1},"f":"e-learning module","a":"Educator / trainer","b":"Through three lessons, you'll examine emerging roles, identify the combination of human and technical skills that support success, and explore accessible pathways that help students build relevant experience.","nt":"","ct":"pathway"},{"n":"The Future of AI in Education & Personal Action Plan","p":"IBM SkillsBuild","pw":"Professional Growth & Future Readiness with AI","t":"Basic","tm":"60mins","mins":60,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4082674/trainingInstanceId/course:4082674_4656203/en-US","c":{"TCH":2},"f":"e-learning module","a":"Educator / trainer","b":"AI is increasingly shaping how teaching, learning, and school systems evolve, but its impact depends on how educators choose to engage with it.","nt":"","ct":"pathway"},{"n":"Capstone Project: Shaping Future-Ready Learning with AI","p":"IBM SkillsBuild","pw":"Professional Growth & Future Readiness with AI","t":"Basic","tm":"30mins","mins":30,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4082675/trainingInstanceId/course:4082675_4656204/en-US","c":{"ETG":2,"TCH":3},"f":"capstone scenario","a":"Educator / trainer","b":"This capstone places you in a realistic classroom scenario where students are exploring how AI is shaping careers, learning, and decision-making across different fields.","nt":"Capstone project","ct":"pathway"},{"n":"AI-Powered Chatbots","p":"IBM SkillsBuild","pw":"AI-Enabled Applications for Customer Service","t":"Fluency","tm":"2hrs 30mins","mins":150,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3917429/trainingInstanceId/course:3917429_4489025/en-US","c":{"TUS":2,"IND":3,"ENG":3},"f":"click-through simulation","a":"Aspiring technical","b":"You'll learn how AI-powered chatbots can make customer service more efficient.","nt":"Or basic+. Good introduction to Watson (+ Copilot)","ct":"pathway"},{"n":"AI-Powered Ticket Routing & Recommendation Systems","p":"IBM SkillsBuild","pw":"AI-Enabled Applications for Customer Service","t":"Fluency","tm":"2hrs 30mins","mins":150,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3917430/trainingInstanceId/course:3917430_4489026/en-US","c":{"ETG":2,"IND":3,"MLF":1,"ENG":3},"f":"multi-module course","a":"Aspiring technical","b":"You'll explore how AI-powered ticket routing and recommendation systems improve customer service efficiency and recommendations.","nt":"","ct":"pathway"},{"n":"Knowledge Management Systems & Customer Analytics","p":"IBM SkillsBuild","pw":"AI-Enabled Applications for Customer Service","t":"Fluency","tm":"2hrs 30mins","mins":150,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3917431/trainingInstanceId/course:3917431_4489027/en-US","c":{"DAT":2,"IND":3},"f":"multi-module course","a":"Aspiring technical","b":"You'll explore how AI-powered knowledge management systems enhance customer experiences by improving access to customer data.","nt":"","ct":"pathway"},{"n":"Use Generative AI for Software Development","p":"IBM SkillsBuild","pw":"Software Development Using IBM Granite","t":"Fluency","tm":"60mins","mins":60,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4058884/trainingInstanceId/course:4058884_4630679/en-US","c":{"PRO":2,"ENG":2},"f":"click-through simulation","a":"Aspiring technical","b":"You'll learn how AI can help you write new code, switch code between programming languages, and identify common issues.","nt":"Fluency+. Knowledge of programming needed","ct":"pathway"},{"n":"Code Generation & Optimisation Using IBM Granite","p":"IBM SkillsBuild","pw":"Software Development Using IBM Granite","t":"Fluency","tm":"3hrs 30mins","mins":210,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4058913/trainingInstanceId/course:4058913_4630708/en-US","c":{"PRO":3,"ENG":3},"f":"multi-module course","a":"Technical practitioner","b":"You will learn how to use IBM Granite models to enhance your coding practices.","nt":"Fluency+. Knowledge of programming needed","ct":"pathway"},{"n":"Mastering the Art of Prompting","p":"IBM SkillsBuild","pw":"n/a","t":"Foundational","tm":"60mins","mins":60,"cred":"","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4058858/trainingInstanceId/course:4058858_4630653/en-US","c":{"TUS":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Complete beginner","b":"This is an activity-based course. You'll learn about AI language models and the rules to follow when giving instructions, or prompting, an AI language model.","nt":"Uses ChatGPT","ct":""},{"n":"What is Prompt Tuning?","p":"IBM SkillsBuild","pw":"n/a","t":"Foundational","tm":"15mins","mins":15,"cred":"","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4058965/trainingInstanceId/course:4058965_4630760/en-US","c":{"MLF":1,"ENG":1},"f":"e-learning module","a":"Aspiring technical","b":"Focuses on the concept of prompt tuning-a technique used to adapt a pre-trained language model to specific tasks or domains without extensive retraining-as a method to adapt Artificial Intelligence (AI) foundation models to new tasks...","nt":"Interactive quiz + video","ct":""},{"n":"Rewriting a Message for Three Audiences","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Foundational","tm":"25mins","mins":25,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4080380/trainingInstanceId/course:4080380_4653659/en-US","c":{"TUS":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Everyday user (non-technical)","b":"You'll practice adapting a single message for three different audiences using AI as a drafting assistant.","nt":"","ct":"pathway"},{"n":"Turning Bullet Points into a Polished Email & Announcement","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Foundational","tm":"30mins","mins":30,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4080381/trainingInstanceId/course:4080381_4653660/en-US","c":{"TUS":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Everyday user (non-technical)","b":"You'll turn rough notes into clear messages. While bullet points capture ideas quickly, they often lack structure, tone, and clarity.","nt":"","ct":"pathway"},{"n":"Summarising a Technical Document into Multiple Accessible Formats","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Foundational","tm":"25mins","mins":25,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4080382/trainingInstanceId/course:4080382_4653661/en-US","c":{"TUS":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Everyday user (non-technical)","b":"You'll use AI to generate and refine summaries from the same technical document for different business purposes.","nt":"","ct":"pathway"},{"n":"Extracting & Validating Information with AI","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Foundational","tm":"15mins","mins":15,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4082685/trainingInstanceId/course:4082685_4656214/en-US","c":{"ETG":1,"TUS":2,"PRO":2,"IND":1},"f":"guided activity (10-30 min)","a":"Everyday user (non-technical)","b":"You'll practice using AI to extract and review legal information from case materials.","nt":"","ct":"pathway"},{"n":"Drafting a Structured, Written Report with AI as an Assistant","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Foundational","tm":"30mins","mins":30,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4080383/trainingInstanceId/course:4080383_4653662/en-US","c":{"TUS":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Everyday user (non-technical)","b":"You'll learn how to use AI as a writing assistant to organize notes, ideas, and research into a structured report outline.","nt":"","ct":"pathway"},{"n":"Generating a Visual Storyboard or Mock-Up from a Concept","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Basic","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4080384/trainingInstanceId/course:4080384_4653663/en-US","c":{"TUS":2,"PRO":2,"IND":2},"f":"guided activity (10-30 min)","a":"Creative / marketing","b":"You'll practice using AI to translate creative brief requirements into visual assets for a real-world marketing scenario.","nt":"Marketing focus","ct":"pathway"},{"n":"Creating & Refining Visuals with AI","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Basic","tm":"30mins","mins":30,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4080385/trainingInstanceId/course:4080385_4653664/en-US","c":{"TUS":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Creative / marketing","b":"You'll learn how to use AI image-generation tools to create and refine flowchart-style, infographic-style, and illustrated concepts visuals from written descriptions.","nt":"","ct":"pathway"},{"n":"Planning a Website for a Small Business with IBM Bob","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Basic","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4082657/trainingInstanceId/course:4082657_4656186/en-US","c":{"TUS":2,"PRO":2,"ENG":2},"f":"guided activity (10-30 min)","a":"Aspiring technical","b":"You'll learn when to use the Ask, Plan, and Agent modes in IBM Bob, an AI-powered Software Development Lifecycle partner.","nt":"Good introduction to agents and more","ct":"pathway"},{"n":"Cleaning & Summarising Data with AI","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Basic","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4083265/trainingInstanceId/course:4083265_4656825/en-US","c":{"ETG":1,"DAT":2,"IND":1},"f":"guided activity (10-30 min)","a":"Everyday user (non-technical)","b":"In this activity you'll review and prepare disorganized patient data for internal reporting.","nt":"Borderline fluency tier","ct":"pathway"},{"n":"Classifying Text into Risk Categories","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Basic","tm":"25mins","mins":25,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4083278/trainingInstanceId/course:4083278_4656847/en-US","c":{"PRO":2,"DAT":2,"IND":2},"f":"guided activity (10-30 min)","a":"Everyday user (non-technical)","b":"You'll review financial narratives to identify financial risk indicators and classify each narrative as low, medium, and high risk.","nt":"Borderline fluency tier","ct":"pathway"},{"n":"Identifying Hallucinations & Bias in AI-Generated Outputs","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Basic","tm":"35mins","mins":35,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4080386/trainingInstanceId/course:4080386_4653665/en-US","c":{"ETG":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Everyday user (non-technical)","b":"You'll evaluate AI-generated outputs and identify when they might be incorrect, misleading, or biased.","nt":"Borderline fluency tier","ct":"pathway"},{"n":"Running What-If Scenarios to Explore Trade-Offs","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Basic","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4085579/trainingInstanceId/course:4085579_4659457/en-US","c":{"TUS":2,"DAT":1,"LDR":2},"f":"guided activity (10-30 min)","a":"Manager / SME owner","b":"You'll use an AI tool to generate and compare product launch scenarios that highlight different business tradeoffs.","nt":"Borderline fluency tier","ct":"pathway"},{"n":"Using AI as a Tutor: Building & Improving Study Materials","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Basic","tm":"25mins","mins":25,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4080387/trainingInstanceId/course:4080387_4653666/en-US","c":{"TUS":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Everyday user (non-technical)","b":"You'll use an AI tool as a study support tool to create a study guide, review the output, refine prompts, and generate practice questions that support different ways of reviewing concepts.","nt":"Borderline fluency tier","ct":"pathway"},{"n":"Using AI as a Tutor: Redesigning Your Resume & Navigating Career Growth","p":"IBM SkillsBuild","pw":"AI Skills for Everyday Productivity","t":"Basic","tm":"25mins","mins":25,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4082656/trainingInstanceId/course:4082656_4656185/en-US","c":{"ETG":1,"TUS":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Jobseeker","b":"You'll use AI as a coaching and reflection partner to redesign a resume and create a structured career growth plan.","nt":"Borderline fluency tier","ct":"pathway"},{"n":"Retrieval-Augmented Generation for Enhanced AI Outputs","p":"IBM SkillsBuild","pw":"Retrieval-Augmented Generation for Enhanced AI Outputs","t":"Fluency","tm":"4hrs","mins":240,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4061518/trainingInstanceId/course:4061518_4633348/en-US","c":{"ENG":4,"OPS":2},"f":"multi-module course","a":"Technical practitioner","b":"You'll explore key RAG use cases. You'll learn about the RAG workflow and ways to improve the content generated by a RAG system.","nt":"","ct":"pathway"},{"n":"Foundations of Artificial Intelligence","p":"IBM SkillsBuild","pw":"AI Foundations for Educators","t":"Foundational","tm":"90mins","mins":90,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4074146/trainingInstanceId/course:4074146_4646945/en-US","c":{"AIL":1,"TCH":1},"f":"e-learning module","a":"Educator / trainer","b":"You will get a clear, practical understanding of what AI is and how it differs from traditional computer programs.","nt":"","ct":"pathway"},{"n":"Responsible AI Use in Education","p":"IBM SkillsBuild","pw":"AI Foundations for Educators","t":"Basic","tm":"95mins","mins":95,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4074147/trainingInstanceId/course:4074147_4646946/en-US","c":{"ETG":2,"TCH":2},"f":"e-learning module","a":"Educator / trainer","b":"You will examine key ethical challenges, learn how to evaluate AI tools thoughtfully, and apply a practical decision-making structure in your classroom in order to protect students, support learning, and preserve trust.","nt":"Possibly fluency tier","ct":"pathway"},{"n":"Crafting Responsible & Transparent Guidelines for AI Use in the Classroom","p":"IBM SkillsBuild","pw":"AI Foundations for Educators","t":"Fluency","tm":"2hrs","mins":120,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4074148/trainingInstanceId/course:4074148_4646947/en-US","c":{"ETG":3,"TCH":3},"f":"e-learning module","a":"Educator / trainer","b":"You'll learn how to translate responsible AI thinking into clear classroom guidelines, enabling you to build shared AI expectations with your students.","nt":"","ct":"pathway"},{"n":"Capstone Project: From Uncertainty to Action: Making Decisions about AI in the Classroom","p":"IBM SkillsBuild","pw":"AI Foundations for Educators","t":"Fluency","tm":"30mins","mins":30,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4074149/trainingInstanceId/course:4074149_4646948/en-US","c":{"ETG":2,"TCH":3},"f":"capstone scenario","a":"Educator / trainer","b":"You step into the role of a secondary teacher launching a new unit with a research task and written response.","nt":"","ct":"pathway"},{"n":"Craft Precise Prompts for AI Models","p":"IBM SkillsBuild","pw":"Craft Precise Prompts for AI Models","t":"Basic","tm":"4hrs","mins":240,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4063665/trainingInstanceId/course:4063665_4635644/en-US","c":{"PRO":3,"ENG":2},"f":"multi-module course","a":"Aspiring technical","b":"You'll explore how to write prompts to generate required output from generative AI models such as large language models (LLMs).","nt":"Basic+. Advanced prompting","ct":"pathway"},{"n":"Introduction to Generative AI for Content Creation","p":"IBM SkillsBuild","pw":"Generative AI Content Creation","t":"Basic","tm":"4hrs","mins":240,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4074185/trainingInstanceId/course:4074185_4646984/en-US","c":{"TUS":2,"PRO":2,"IND":2},"f":"multi-module course","a":"Creative / marketing","b":"You'll dive into the essentials of generative AI, starting with an overview of the course and a sneak peek at the exciting final project.","nt":"Covers a lot of the basics. Design focused","ct":"pathway"},{"n":"Generative AI in Adobe Express","p":"IBM SkillsBuild","pw":"Generative AI Content Creation","t":"Fluency","tm":"4hrs","mins":240,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4074186/trainingInstanceId/course:4074186_4646985/en-US","c":{"TUS":3,"PRO":2,"IND":2},"f":"multi-module course","a":"Creative / marketing","b":"It develops your expertise in the latest AI-powered tools in Adobe Express, transforming how you create digital content.","nt":"","ct":"pathway"},{"n":"Content Creation with Generative AI","p":"IBM SkillsBuild","pw":"Generative AI Content Creation","t":"Fluency","tm":"4hrs","mins":240,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4074187/trainingInstanceId/course:4074187_4646986/en-US","c":{"TUS":3,"PRO":2,"IND":2},"f":"multi-module course","a":"Creative / marketing","b":"It guides you through the world of AI-powered content creation, from applying text effects and generative templates to integrating AI seamlessly into your creative workflow and staying ahead of industry trends.","nt":"","ct":"pathway"},{"n":"Using AI Responsibly","p":"IBM SkillsBuild","pw":"Generative AI Content Creation","t":"Basic","tm":"3hrs","mins":180,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4074188/trainingInstanceId/course:4074188_4646987/en-US","c":{"ETG":3},"f":"multi-module course","a":"Creative / marketing","b":"It is your guide to navigating the complex landscape of generative AI with integrity.","nt":"Borderline fluency tier","ct":"pathway"},{"n":"AI in the World Today","p":"IBM SkillsBuild","pw":"AI Applications","t":"Foundational","tm":"3hrs 15mins","mins":195,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3947269/trainingInstanceId/course:3947269_4518966/en-US","c":{"AIL":1},"f":"e-learning module","a":"Complete beginner","b":"You'll learn how people use artificial intelligence (AI) in many areas, from gadgets like smartphones, to cars to cars that drive themselves, and phones that respond to you.","nt":"Moves into basic tier by the end","ct":"pathway"},{"n":"The Impact of AI on Business","p":"IBM SkillsBuild","pw":"AI Applications","t":"Basic","tm":"2hrs 30mins","mins":150,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3947270/trainingInstanceId/course:3947270_4518967/en-US","c":{"PRO":2,"IND":2,"LDR":2},"f":"multi-module course","a":"Manager / SME owner","b":"You'll learn about AI-based solutions and tools tailored for specific business needs and contexts.","nt":"Basic+","ct":"pathway"},{"n":"The Impact of AI on Customer Experience","p":"IBM SkillsBuild","pw":"AI Applications","t":"Basic","tm":"2hrs 30mins","mins":150,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3947271/trainingInstanceId/course:3947271_4518968/en-US","c":{"TUS":2,"DAT":2,"IND":2},"f":"multi-module course","a":"Manager / SME owner","b":"You'll learn skills to use AI to improve customer experiences in retail, e-commerce, and service sectors.","nt":"Basic+","ct":"pathway"},{"n":"The Impact of AI on Informed Decision Making","p":"IBM SkillsBuild","pw":"AI Applications","t":"Fluency","tm":"2hrs 15mins","mins":135,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3947272/trainingInstanceId/course:3947272_4518969/en-US","c":{"DAT":2,"IND":2,"LDR":2},"f":"multi-module course","a":"Manager / SME owner","b":"You'll learn how AI is used to enhance decision-making processes in various business environments.","nt":"","ct":"pathway"},{"n":"The Impact of AI on Risk Management & Human Resources","p":"IBM SkillsBuild","pw":"AI Applications","t":"Fluency","tm":"2hrs","mins":120,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:3947273/trainingInstanceId/course:3947273_4518970/en-US","c":{"DAT":2,"IND":2,"LDR":2},"f":"multi-module course","a":"Manager / SME owner","b":"You'll learn about how AI can be used in risk management to provide advanced data analytics, predictive modeling, and swift decision making.","nt":"","ct":"pathway"},{"n":"Team Essentials for Designing AI Solutions","p":"IBM SkillsBuild","pw":"Team Essentials for Designing AI Solutions","t":"Basic","tm":"3hrs 15mins","mins":195,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4065066/trainingInstanceId/course:4065066_4637149/en-US","c":{"ETG":2,"DAT":1,"LDR":2},"f":"multi-module course","a":"Manager / SME owner","b":"It follows a realistic case study to show teams in action as they identify user needs, align on goals, and make informed design decisions.","nt":"Basic+. Holistic investigation of AI in business setting","ct":"pathway"},{"n":"Introduction to Generative AI","p":"IBM SkillsBuild","pw":"Generative AI in Action","t":"Fluency","tm":"4hrs","mins":240,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4058859/trainingInstanceId/course:4058859_4630654/en-US","c":{"AIL":2,"MLF":2,"ENG":2},"f":"multi-module course","a":"Aspiring technical","b":"You'll learn about the history of AI, how deep learning plays a pivotal role in generative AI (gen-AI), and how gen-AI works and is applied to various industries.","nt":"Aimed at programmers, not too high level","ct":"pathway"},{"n":"Crafting Precision Prompts with Generative AI","p":"IBM SkillsBuild","pw":"Generative AI in Action","t":"Basic","tm":"60mins","mins":60,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4058881/trainingInstanceId/course:4058881_4630676/en-US","c":{"TUS":2,"PRO":2},"f":"guided activity (10-30 min)","a":"Complete beginner","b":"This is an activity-based course. You'll learn about AI language models and the rules to follow when giving instructions, or prompting, an AI language model.","nt":"Could cap a foundational course on genAI/prompting","ct":"pathway"},{"n":"Coding Simplified with Generative AI","p":"IBM SkillsBuild","pw":"Generative AI in Action","t":"Fluency","tm":"3hrs","mins":180,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4058860/trainingInstanceId/course:4058860_4630655/en-US","c":{"PRO":2,"ENG":2},"f":"hands-on lab","a":"Aspiring technical","b":"You will learn the basics of scripting, understand its distinctions from traditional programming, and explore how generative AI models are used to simplify and streamline code generation.","nt":"Aimed at programmers, not too high level","ct":"pathway"},{"n":"Make an Impact with AI","p":"IBM SkillsBuild","pw":"Fundamentals of Sustainability & Technology","t":"Basic","tm":"90mins","mins":90,"cred":"Y","il":"","u":"https://alm.ibm.com/ibm-skillsbuildadult/trainingId/course:4058948/trainingInstanceId/course:4058948_4630743/en-US","c":{"AIL":1,"IND":2},"f":"e-learning module","a":"Complete beginner","b":"You'll become familiar with artificial intelligence (AI) and how it can be used to help with sustainability.","nt":"Basic+. Sustainability focused, covers AI basics","ct":"pathway"},{"n":"Introduction to Gen AI","p":"Learning to Earning","pw":"","t":"Basic","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/introduction-gen-ai?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"AIL":1,"ETG":1},"f":"interactive lesson (20-30 min)","a":"Complete beginner","b":"You'll learn to explain the concept of Generative Artificial Intelligence and describe the mechanisms behind how Generative AI creates and innovates.","nt":"Uses ChatGPT. Very basic","ct":"certificate"},{"n":"Mastering Prompting","p":"Learning to Earning","pw":"","t":"Foundational","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/mastering-prompting?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"PRO":2},"f":"interactive lesson (20-30 min)","a":"Complete beginner","b":"You'll learn to recognize the importance of well-crafted prompts for effective AI interactions and apply essential prompt engineering techniques to guide Generative AI toward better and more useful results.","nt":"Could also be basic tier intro","ct":"certificate"},{"n":"Responsible Use of Generative AI","p":"Learning to Earning","pw":"","t":"Basic","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/responsible-use-gen-ai?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"ETG":2},"f":"interactive lesson (20-30 min)","a":"Complete beginner","b":"You'll learn to recognize why responsible use of Generative AI is vital in today's world and apply core principles of ethical AI use in real-life scenarios.","nt":"Good overview of ethical concerns for a foundational+ learner","ct":"certificate"},{"n":"A 360 View of Generative AI","p":"Learning to Earning","pw":"","t":"Foundational","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/view-generative-ai?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"AIL":1},"f":"interactive lesson (20-30 min)","a":"Complete beginner","b":"You'll be able to understand what Generative AI is, how it was born, and how it works and discover its opportunities and limitations.","nt":"\"Gentler\" intro to Gen AI than other resource","ct":"certificate"},{"n":"Agentic Artificial Intelligence","p":"Learning to Earning","pw":"","t":"Basic","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/agentic-artificial-intelligence?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"AIL":1},"f":"interactive lesson (20-30 min)","a":"Complete beginner","b":"You'll learn to understand what an AI Agent is and its key functionalities and identify the core components that enable it to operate.","nt":"","ct":"certificate"},{"n":"Artificial Intelligence & Machine Learning","p":"Learning to Earning","pw":"","t":"Basic","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/artificial-intelligence-machine-learning?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"AIL":1,"MLF":1},"f":"interactive lesson (20-30 min)","a":"Complete beginner","b":"You'll be able to understand the core concepts of AI and Machine Learning, and how they work and identify common everyday applications where AI and Machine Learning are used.","nt":"","ct":"certificate"},{"n":"Applications of AI in Key Industry Sectors","p":"Learning to Earning","pw":"","t":"Basic","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/applications-ai-key-industrial-sectors?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"AIL":1,"IND":1},"f":"interactive lesson (20-30 min)","a":"Jobseeker","b":"You'll be able to understand how AI is applied in strategic sectors such as healthcare, finance, retail, gaming, and robotics and observe how AI improves processes, decision-making, and services in real-world contexts.","nt":"","ct":"certificate"},{"n":"AI Accountability & Regulations","p":"Learning to Earning","pw":"","t":"Basic","tm":"30mins","mins":30,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/ai-accountability-regulations?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"ETG":2},"f":"interactive lesson (20-30 min)","a":"Everyday user (non-technical)","b":"Real examples of AI systems causing errors, discrimination or harm, what AI accountability means, and the key concepts of the EU AI Act.","nt":"","ct":"certificate"},{"n":"Using Generative AI for Job Seeking","p":"Learning to Earning","pw":"","t":"Basic","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/using-generative-ai-for-job-seeking?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"ETG":1,"TUS":2,"PRO":1},"f":"interactive lesson (20-30 min)","a":"Jobseeker","b":"You'll be able to understand what generative AI can and cannot do in job searching and how to use it responsibly and recognize how AI can help analyze experience, extract key skills, and enable you to maintain an authentic voice.","nt":"","ct":"certificate"},{"n":"Critical Thinking: Identifying AI Risks","p":"Learning to Earning","pw":"","t":"Basic","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/critical-thinking-identifying-ai-risks?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"AIL":1,"ETG":2},"f":"interactive lesson (20-30 min)","a":"Everyday user (non-technical)","b":"You'll be able to identify the risks on thinking, writing, and decision-making caused by over-reliance on AI and name and understand what common AI-enabled threats such as phishing and deepfakes are.","nt":"","ct":"certificate"},{"n":"Critical Thinking: Evaluating AI Outputs","p":"Learning to Earning","pw":"","t":"Fluency","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/critical-thinking-evaluating-ai-outputs?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"ETG":1,"PRO":2},"f":"interactive lesson (20-30 min)","a":"Everyday user (non-technical)","b":"You'll be able to understand why AI models can produce errors, hallucinations, and overgeneralizations and recognize responses using effective prompting, fact-checking, and assumption checks.","nt":"Intro to fluency tier course","ct":"certificate"},{"n":"TerrAIn: A GenAI Board Game","p":"Learning to Earning","pw":"","t":"Fluency","tm":"20mins","mins":20,"cred":"Y","il":"","u":"https://www.l2eportal.accenture.com/curso/terraIn-gen-ai?filters=inteligencia-artificial&locale=en-GB&lang=en&type=digitales&idpos=405&p=12360&content-lang=en-US","c":{"AIL":1,"TUS":2},"f":"interactive lesson (20-30 min)","a":"Complete beginner","b":"You'll be able to understand the foundational aspects of Gen AI and interact with Gen AI platforms.","nt":"Capstone project for younger/less advanced audiences","ct":"certificate"},{"n":"Introduction to Modern AI","p":"Cisco NetAcad","pw":"","t":"Basic","tm":"6hrs","mins":360,"cred":"Y","il":"Y","u":"https://www.netacad.com/courses/introduction-to-modern-ai?courseLang=en-US","c":{"AIL":2,"TUS":2,"PRO":2},"f":"multi-module course","a":"Complete beginner","b":"Introduction to Modern AI is a beginner-friendly course designed to help you learn key AI concepts and get hands-on practice with AI-enabled apps.","nt":"Could be foundational tier for learners with a more technical background","ct":"certificate"},{"n":"Find Insights with AI","p":"Cisco NetAcad","pw":"","t":"Basic","tm":"6hrs","mins":360,"cred":"Y","il":"Y","u":"https://www.netacad.com/courses/apply-ai-find-insights-ai?courseLang=en-US","c":{"TUS":3,"PRO":2,"DAT":3,"IND":2},"f":"multi-module course","a":"Everyday user (non-technical)","b":"It guides you step-by-step through thematic analysis, the process of analyzing data, like customer reviews, into actionable insights using AI tools.","nt":"Could be foundational tier for learners with a more technical background","ct":"certificate"},{"n":"AI Fundamentals: Foundations for Understanding AI","p":"Cisco NetAcad","pw":"","t":"Fluency","tm":"9hrs","mins":540,"cred":"Y","il":"Y","u":"https://www.netacad.com/courses/ibm-foundations-understanding-ai?courseLang=en-US","c":{"AIL":2,"ETG":2,"PRO":2,"MLF":1},"f":"multi-module course","a":"Complete beginner","b":"It helps you understand the core concepts behind AI and how they apply in the real world.","nt":"IBM SkillsBuild collab. Aimed at more technical learners","ct":"certificate"},{"n":"AI Fundamentals: Language & Vision in AI","p":"Cisco NetAcad","pw":"","t":"Fluency","tm":"10hrs","mins":600,"cred":"Y","il":"Y","u":"https://www.netacad.com/courses/ibm-language-vision-ai?courseLang=en-US","c":{"AIL":2,"ETG":1,"TUS":2,"MLF":1},"f":"multi-module course","a":"Complete beginner","b":"It helps you explore how AI systems process language, interpret images, power intelligent agents, and support real-world applications.","nt":"IBM SkillsBuild collab. Aimed at more technical learners","ct":"certificate"},{"n":"Build Your Resume with AI","p":"Cisco NetAcad","pw":"","t":"Basic","tm":"9hrs","mins":540,"cred":"Y","il":"Y","u":"https://www.netacad.com/courses/apply-ai-build-your-resume-ai?courseLang=en-US","c":{"ETG":2,"TUS":3,"PRO":2},"f":"multi-module course","a":"Jobseeker","b":"It shows you how to use AI to create customized resumes that succeed at both stages and showcase your qualifications.","nt":"","ct":"certificate"},{"n":"Prompt Like an Engineer","p":"Cisco NetAcad","pw":"","t":"Basic","tm":"9hrs","mins":540,"cred":"Y","il":"Y","u":"https://www.netacad.com/courses/apply-ai-prompt-like-engineer?courseLang=en-US","c":{"ETG":2,"TUS":3,"PRO":3},"f":"multi-module course","a":"Everyday user (non-technical)","b":"This free course teaches you to think like an engineer when working with AI: designing, iterating, verifying, and reusing prompts so you get consistent, high-quality results every time.","nt":"Part of the Apply AI learning collection","ct":"certificate"},{"n":"AI Security Nuggets","p":"Cisco NetAcad","pw":"","t":"Fluency","tm":"60mins","mins":60,"cred":"N","il":"N","u":"https://www.netacad.com/modules/ai-security-nuggets?courseLang=en-US","c":{"ETG":2,"OPS":2},"f":"video series","a":"Technical practitioner","b":"Start with an overview of AI security and legislation, delve into AI security program implications, and explore risks and best practices with the OWASP (Open Web Application Security Project) Top 10 and the MITRE ATLAS (Adversarial...","nt":"5-part video series. Aimed at technical learners","ct":""},{"n":"Demystify AI & OpenVINO Toolkit","p":"Cisco NetAcad","pw":"","t":"Fluency","tm":"45mins","mins":45,"cred":"N","il":"N","u":"https://www.netacad.com/modules/demystify-ai-openvino?courseLang=en-US","c":{"MLF":2,"ENG":1,"OPS":1},"f":"e-learning module","a":"Aspiring technical","b":"Begin by understanding the critical role of data in AI modeling and explore the three core domains of AI: Statistical Data, Computer Vision, and Natural Language Processing.","nt":"Part of the AI with Intel career path","ct":""},{"n":"Introduction to Generative AI","p":"Cisco NetAcad","pw":"","t":"Basic","tm":"45mins","mins":45,"cred":"N","il":"N","u":"https://www.netacad.com/modules/introduction-to-generative-ai?courseLang=en-US","c":{"AIL":1,"PRO":1},"f":"e-learning module","a":"Complete beginner","b":"Ideal for beginners, this module helps build a solid foundation by demystifying AI buzzwords and understanding how AI has evolved to shape our modern landscape.","nt":"Part of the AI with Intel career path","ct":""},{"n":"Introduction to Responsible AI Skills","p":"Cisco NetAcad","pw":"","t":"Basic","tm":"45mins","mins":45,"cred":"N","il":"N","u":"https://www.netacad.com/modules/introduction-to-responsible-ai-skills?courseLang=en-US","c":{"ETG":2},"f":"e-learning module","a":"Everyday user (non-technical)","b":"It introduces the key principles of Responsible AI, equipping you with the knowledge to evaluate AI systems and their impact on society.","nt":"Part of the AI with Intel career path","ct":""},{"n":"The Road to Intelligent Machines","p":"Cisco NetAcad","pw":"","t":"Basic","tm":"2hrs","mins":120,"cred":"N","il":"N","u":"https://www.netacad.com/modules/intelligent-machines?courseLang=en-US","c":{"AIL":1,"TUS":2,"MLF":1},"f":"e-learning module","a":"Complete beginner","b":"Begin by exploring the origins and evolution of AI, tracing its journey from ancient origins to the current groundbreaking advancements of modern generative tools.","nt":"","ct":""}];
+
+(function(){
+  "use strict";
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const CK = CODES.map(c => c.k);
+  const NAME = {}; CODES.forEach(c => NAME[c.k] = c.n);
+
+  /* one haystack per resource, built once, so typing stays cheap */
+  R.forEach(r => {
+    r._hay = [r.n, r.p, r.pw, r.t, r.f, r.a, r.b, r.nt,
+              CK.filter(k => r.c[k] != null).map(k => k + " " + NAME[k]).join(" ")]
+             .filter(Boolean).join(" ").toLowerCase();
+    r._top = Math.max.apply(null, Object.keys(r.c).map(k => r.c[k]));
+  });
+
+  let sortKey = "n", sortDir = 1, open = {};
+
+  const chips = r => CK.filter(k => r.c[k] != null).map(k =>
+    '<abbr class="sc sc-' + k + '" title="' + esc(NAME[k] + " — level " + r.c[k]) + '">' +
+    k + '<b>' + r.c[k] + '</b></abbr>').join('');
+
+  const stamps = r => {
+    const s = [];
+    if (r.ct === "certificate") s.push("certificate");
+    else if (r.ct === "pathway") s.push("towards a credential");
+    if (r.il === "Y") s.push("instructor-led option");
+    return s.map(x => '<span class="stamp">' + esc(x) + '</span>').join('');
+  };
+
+  const record = r => {
+    const d = [];
+    if (r.t)  d.push(["Tier", r.t]);
+    if (r.f)  d.push(["Format", r.f]);
+    if (r.tm) d.push(["Time", r.tm]);
+    if (r.pw) d.push(["Pathway", r.pw]);
+    d.push(["Platform", r.p]);
+    d.push(["Best fit", r.a]);
+    return '<div class="rec">' +
+      '<div>' + (r.b ? '<p>' + esc(r.b) + '</p>' : '') +
+        (r.nt ? '<p class="note">' + esc(r.nt) + '</p>' : '') +
+        (stamps(r) ? '<p class="note">' + stamps(r) + '</p>' : '') +
+      '</div>' +
+      '<dl>' + d.map(x => '<dt>' + esc(x[0]) + '</dt><dd>' + esc(x[1]) + '</dd>').join('') + '</dl>' +
+      '</div>';
+  };
+
+  function rows(){
+    const q = $("#q").value.trim().toLowerCase();
+    const c = $("#fCode").value;
+    const l = $("#fLevel").value ? Number($("#fLevel").value) : 0;
+    const pl = $("#fPlat").value;
+    /* the level filter reads inside the chosen skill area when there is one,
+       so "ENG" + "Level 4" means ENG at 4, not ENG plus a 4 anywhere else */
+    return R.filter(r =>
+      (!c || r.c[c] != null) &&
+      (!l || Object.keys(r.c).some(k => r.c[k] === l && (!c || k === c))) &&
+      (!pl || r.p === pl) &&
+      (!q || r._hay.indexOf(q) >= 0));
+  }
+
+  function draw(){
+    const list = rows().slice().sort((a, b) => {
+      let x = a[sortKey], y = b[sortKey];
+      if (sortKey === "mins") { x = x || 0; y = y || 0; }
+      else { x = String(x || "").toLowerCase(); y = String(y || "").toLowerCase(); }
+      return (x < y ? -1 : x > y ? 1 : 0) * sortDir ||
+             (String(a.n).toLowerCase() < String(b.n).toLowerCase() ? -1 : 1);
+    });
+    $("#count").textContent = list.length === R.length
+      ? R.length + " resources"
+      : list.length + " of " + R.length + " shown";
+    $("#empty").hidden = list.length > 0;
+    $("#body").innerHTML = list.map(r => {
+      const id = "r" + R.indexOf(r), on = !!open[id];
+      return '<tr class="res' + (on ? ' open' : '') + '" data-id="' + id + '">' +
+        '<td class="codecell">' + chips(r) + '</td>' +
+        '<td><span class="rname">' + (r.u
+            ? '<a href="' + esc(r.u) + '" target="_blank" rel="noopener">' + esc(r.n) + '</a>'
+            : esc(r.n)) + '</span></td>' +
+        '<td>' + esc(r.p) + '</td>' +
+        '<td class="num">' + esc(r.tm) + '</td>' +
+        '<td>' + esc(r.a) + '</td>' +
+        '<td class="more"><button type="button" class="expand" aria-expanded="' + on + '"' +
+          /* only point at the record while it is actually in the document */
+          (on ? ' aria-controls="' + id + 'd"' : '') + '>' +
+          '<span aria-hidden="true">' + (on ? "−" : "+") + '</span>' +
+          '<span class="sr">Full record for ' + esc(r.n) + '</span></button></td>' +
+        '</tr>' +
+        (on ? '<tr class="detail" id="' + id + 'd"><td colspan="6">' + record(r) + '</td></tr>' : '');
+    }).join('');
+  }
+
+  /* one handler on the table body: rows are redrawn constantly, and a click
+     anywhere but the course link opens the record */
+  $("#body").addEventListener("click", e => {
+    if (e.target.closest("a")) return;
+    const tr = e.target.closest("tr.res");
+    if (!tr) return;
+    const id = tr.dataset.id;
+    open[id] = !open[id];
+    draw();
+    const btn = document.querySelector('tr[data-id="' + id + '"] .expand');
+    if (btn) btn.focus();
+  });
+
+  ["#q", "#fCode", "#fLevel", "#fPlat"].forEach(s =>
+    $(s).addEventListener("input", draw));
+  $("#qClear").addEventListener("click", () => { $("#q").value = ""; draw(); $("#q").focus(); });
+  $("#reset").addEventListener("click", () => {
+    $("#q").value = ""; $("#fCode").value = ""; $("#fLevel").value = ""; $("#fPlat").value = "";
+    open = {}; draw();
+  });
+
+  document.querySelectorAll("th.sortable").forEach(th => {
+    th.querySelector("button").addEventListener("click", () => {
+      const k = th.dataset.k;
+      sortDir = (sortKey === k) ? -sortDir : 1;
+      sortKey = k;
+      document.querySelectorAll("th.sortable").forEach(o => o.removeAttribute("aria-sort"));
+      th.setAttribute("aria-sort", sortDir > 0 ? "ascending" : "descending");
+      draw();
+    });
+  });
+
+  draw();
+})();
+</script>
+</body>
+</html>
